@@ -2,8 +2,9 @@
 # setwd("course04")
 # rawdata<-read.table("household_power_consumption.txt", header=TRUE,sep=";")
 plotdata<-rawdata[rawdata$Date %in% c("1/2/2007", "2/2/2007"),]
+plotdata <- mutate(plotdata, datetime = paste(as.Date(plotdata$Date, "%d/%m/%Y"), plotdata$Time))
 View(plotdata)
-x <- strptime(paste(plotdata$Date, plotdata$Time), format = "%d/%m/%y %H:%M:%S", tz="")
+x <- strptime(plotdata$datetime, format = "%d/%m/%y %H:%M:%S")
 View(x)
 # plotdata$Date <- as.Date(plotdata$Date, "%m/%d/%y")
 # plotdata$Time <- strptime(plotdata$Time, "%H:%M:%S")
